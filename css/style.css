@@ -7832,6 +7832,7 @@ td.hljs-ln-numbers {
 .toc-fixed {
     position: fixed !important;
     top: 85px;
+    line-height: 2.5
 }
 
 @media(max-width:1200px) {

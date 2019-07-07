@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Category: 技术 | xiuin</title>
+  <title itemprop="name">MMD入门教程 | xiuin</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -241,171 +241,200 @@
   </div>
 </header>
 
-      
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img data-src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/banner/coding.jpg" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/qianhuammd.jpg);" src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/qianhuammd.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      MMD入门教程</h1>
+      <p class="entry-census">
+        <span>
+          <a href="xiuin.net">
+            <img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/custom/avatar.jpg">
+          </a>
+        </span>
+        <span>
+          <a href="xiuin.net">xiuin</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2019-7-6<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
   </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">野生技术协会</h1>
-    <span class="cat-des">
-      <p>Geek – Only for Love</p>
-    </span>
-  </header>
-</div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="获取资源"><a href="#获取资源" class="headerlink" title="获取资源"></a>获取资源</h2><h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><p>在D站搜索下载模型：<a href="http://www.deviantart.com" target="_blank" rel="noopener">www.deviantart.com</a></p>
+<ul>
+<li>模型搜索：TDA DL</li>
+<li>场景配布搜索：stage DL</li>
+</ul>
+<h4 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h4><p>在静画搜索并下载场景：<a href="http://seiga.nicovideo.jp/" target="_blank" rel="noopener">http://seiga.nicovideo.jp/</a></p>
+<ul>
+<li>场景配布搜索：MMDステージ配布あり</li>
+</ul>
+<h4 id="动作数据"><a href="#动作数据" class="headerlink" title="动作数据"></a>动作数据</h4><p>在N站搜索并下载动作数据：<a href="http://www.nicovideo.jp/" target="_blank" rel="noopener">http://www.nicovideo.jp/</a></p>
+<ul>
+<li>动作数据搜索：モーション配布</li>
+<li>镜头数据搜索：カメラ配布</li>
+</ul>
+<h4 id="配布"><a href="#配布" class="headerlink" title="配布"></a>配布</h4><p>在B碗下载场景配布：B碗：<a href="https://bowlroll.net/file/index" target="_blank" rel="noopener">https://bowlroll.net/file/index</a></p>
+<ul>
+<li>从B碗下载的文件直接解压会乱码，需要用Bandizip设置为日语再解压</li>
+</ul>
+<h4 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h4><p>YouTube下载音频，需要用到软件 <a href="http://ummydownloader.com/" target="_blank" rel="noopener">http://ummydownloader.com/</a></p>
+<ul>
+<li>输入视频链接，等加载出来之后下拉选择MP3下载</li>
+</ul>
+<h2 id="资源处理"><a href="#资源处理" class="headerlink" title="资源处理"></a>资源处理</h2><ul>
+<li>用格式工厂把mp3转为wav</li>
+<li>从B碗下载的文件直接解压会乱码，需要用Bandizip设置为日语再解压</li>
+<li>动作数据格式应是vmd，模型格式应是pmd，pmx的模型不好载入。如果要使用pmx，需要处理一下<ul>
+<li>选中模型，选择重命名。</li>
+<li>后辍改为“pmd”（不用打开改名字后的压缩文件，直接打开模型再载入动作就可以了）</li>
+</ul>
+</li>
+</ul>
+<h2 id="制作"><a href="#制作" class="headerlink" title="制作"></a>制作</h2><h4 id="制作-1"><a href="#制作-1" class="headerlink" title="制作"></a>制作</h4><ul>
+<li>载入人物模型：pmx</li>
+<li>载入动作数据：vmd</li>
+<li>载入镜头数据：vmd</li>
+<li>载入场景：pmx</li>
+<li>载入音频：wav</li>
+</ul>
+<h4 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h4><ul>
+<li>下载ray-mmd 1.5.2：git clone –recursive <a href="https://github.com/ray-cast/ray-mmd.git" target="_blank" rel="noopener">https://github.com/ray-cast/ray-mmd.git</a></li>
+<li>下载Ray_Toon_Met Ver1.3： <a href="https://bowlroll.net/file/151160，按照readme解压" target="_blank" rel="noopener">https://bowlroll.net/file/151160，按照readme解压</a></li>
+<li>拖入ray.x，ray_controller.pmx</li>
+<li>点击MMEefect，多选none载入main.fx</li>
+<li>选项卡EnvLightMap，双击sky with box，弹出文件夹，选择Sky with lighting with rotation.fx</li>
+<li>关闭坐标轴、地面阴影、反锯齿、mipmap</li>
+<li>背景-&gt;模型绘制顺序：天空最上，场景第二，人物第三，ray_controller最后</li>
+</ul>
+<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><h4 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h4><p>导出avi视频</p>
+<ul>
+<li>把分辨率调成1280×720比较好</li>
+</ul>
+<h4 id="制作借物表"><a href="#制作借物表" class="headerlink" title="制作借物表"></a>制作借物表</h4><p>用SrtEdit做借物表2012</p>
+<ul>
+<li>时间0-4秒</li>
+<li>格式-文本特效编辑-对齐方式-左下角</li>
+<li>借物表内容：<ul>
+<li>Model: Angie-Doll</li>
+<li>Stage: 山田淀子 さん</li>
+<li>Camera: 鬼瞳</li>
+<li>Action: 兰若</li>
+<li>Music：チカっとチカ千花っ-小原好美</li>
+<li>Effects: ray-mmd 1.5.2</li>
+</ul>
+</li>
+</ul>
+<h3 id="压制视频"><a href="#压制视频" class="headerlink" title="压制视频"></a>压制视频</h3><p>用小丸工具箱压制视频</p>
+<ul>
+<li>默认配置，编码器根据电脑位数选，无音频流压制</li>
+<li>压制音频，再封装</li>
+</ul>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏<div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.4null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.4null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2019/07/06/python爬取热门新闻并自动发到微博/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/shaonvzhongmolvxing.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                python+微博的新闻自动发布</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2019/06/15/用Sphinx-ReadTheDocs写完美的API文档/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/ailuomanga.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                用Sphinx+ReadTheDocs写完美的API文档</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/shaonvzhongmolvxing.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-    python+微博的新闻自动发布</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-7-6</div>
-    <p>
-    爬取热门新闻自动发布到新浪微博</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/06/10/Hexo搭建网站全过程/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/img/bz.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/06/10/Hexo搭建网站全过程/">
-    Hexo+Github+阿里云搭建网站全过程</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-6-10</div>
-    <p>
-    hexo-sakura初体验，本站搭建过程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/06/10/Hexo搭建网站全过程/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "rR3ARyG2fkmkwim4dSLy3o0E-gzGzoHsz",
+        appKey: "WUTmCIh2fCMffyk9KeeW8e4H",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
 
-
-      <div class="clearer">
-      </div>
-    </main>
-    <!--  -->
-    
-  </div>
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <a href="xiuin.net" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/custom/avatar.jpg" itemprop="image" alt="xiuin" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="xiuin.net" itemprop="url" rel="author">xiuin</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
 
-<!-- 
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/shaonvzhongmolvxing.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-    python+微博的新闻自动发布</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-7-6</div>
-    <p>
-    爬取热门新闻自动发布到新浪微博</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/06/10/Hexo搭建网站全过程/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/img/bz.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/06/10/Hexo搭建网站全过程/">
-    Hexo+Github+阿里云搭建网站全过程</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-6-10</div>
-    <p>
-    hexo-sakura初体验，本站搭建过程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/06/10/Hexo搭建网站全过程/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
 
- -->
+
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>

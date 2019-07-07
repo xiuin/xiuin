@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Category: 技术 | xiuin</title>
+  <title itemprop="name">我的Sublime必备配置 | xiuin</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -241,171 +241,146 @@
   </div>
 </header>
 
-      
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img data-src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/banner/coding.jpg" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/yourname1.jpg);" src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/yourname1.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      我的Sublime必备配置</h1>
+      <p class="entry-census">
+        <span>
+          <a href="xiuin.net">
+            <img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/custom/avatar.jpg">
+          </a>
+        </span>
+        <span>
+          <a href="xiuin.net">xiuin</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2019-7-6<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
   </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">野生技术协会</h1>
-    <span class="cat-des">
-      <p>Geek – Only for Love</p>
-    </span>
-  </header>
-</div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="安装Package-Control"><a href="#安装Package-Control" class="headerlink" title="安装Package Control"></a>安装Package Control</h2><p>使用Ctrl+`快捷键或者通过View-&gt;Show Console菜单打开命令行，粘贴如下代码。<br>如果顺利的话，此时就可以在Preferences菜单下看到Package Settings和Package Control两个菜单了。</p>
+<pre><code>import urllib.request,os;
+pf = &#39;Package Control.sublime-package&#39;;
+ipp = sublime.installed_packages_path();
+urllib.request.install_opener( urllib.request.build_opener(urllib.request.ProxyHandler()));
+open(os.path.join(ipp, pf), &#39;wb&#39;).write(urllib.request.urlopen(&#39;http://sublime.wbond.net/&#39; + pf.replace(&#39; &#39;,&#39;%20&#39;)).read())</code></pre><hr>
+<h2 id="Preferences-Settings-User"><a href="#Preferences-Settings-User" class="headerlink" title="Preferences / Settings - User"></a>Preferences / Settings - User</h2><pre><code>{
+    &quot;default_line_ending&quot;: &quot;unix&quot;,
+    &quot;ignored_packages&quot;:
+    [
+        &quot;Vintage&quot;
+    ],
+    &quot;translate_tabs_to_spaces&quot;: true
+}</code></pre><hr>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>ctrl+shift+p后在弹出框输入名字即可安装</p>
+<h4 id="Trailing-spaces"><a href="#Trailing-spaces" class="headerlink" title="Trailing spaces"></a>Trailing spaces</h4><ul>
+<li>功能： 检测并一键去除代码中多余的空格</li>
+<li>简介： 写python必备</li>
+<li>使用： 安装插件并重启，即可自动提示多余空格。一键删除多余空格：CTRL+SHITF+T（需配置）。快捷键配置：在Preferences / Key Bindings – User加上代码（数组内）</li>
+</ul>
+<pre><code>[
+    {&quot;keys&quot;:[&quot;ctrl+shift+t&quot;],&quot;command&quot;:&quot;delete_trailing_spaces&quot;}
+]
+</code></pre><h4 id="Doc​Blockr"><a href="#Doc​Blockr" class="headerlink" title="Doc​Blockr"></a>Doc​Blockr</h4><ul>
+<li>功能： 生成优美注释</li>
+<li>简介： 标准的注释，包括函数名、参数、返回值等，并以多行显示，省去手动编写</li>
+</ul>
+<hr>
+<p>未完待续…………..= =，等我回公司看看电脑</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.cnblogs.com/handongyu/p/8435628.html" target="_blank" rel="noopener">实用的sublime插件集合 – sublime推荐必备插件</a></li>
+<li><a href="https://www.cnblogs.com/chris-oil/p/5387129.html" target="_blank" rel="noopener">sublime注释插件与javascript注释规范</a></li>
+</ul>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏<div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.4null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.4null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2019/07/06/Xshell配色方案/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/huiye.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                Xshell配色方案</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/shaonvzhongmolvxing.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-    python+微博的新闻自动发布</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-7-6</div>
-    <p>
-    爬取热门新闻自动发布到新浪微博</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/06/10/Hexo搭建网站全过程/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/img/bz.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/06/10/Hexo搭建网站全过程/">
-    Hexo+Github+阿里云搭建网站全过程</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-6-10</div>
-    <p>
-    hexo-sakura初体验，本站搭建过程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/06/10/Hexo搭建网站全过程/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "rR3ARyG2fkmkwim4dSLy3o0E-gzGzoHsz",
+        appKey: "WUTmCIh2fCMffyk9KeeW8e4H",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
 
-
-      <div class="clearer">
-      </div>
-    </main>
-    <!--  -->
-    
-  </div>
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <a href="xiuin.net" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/custom/avatar.jpg" itemprop="image" alt="xiuin" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="xiuin.net" itemprop="url" rel="author">xiuin</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
 
-<!-- 
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/shaonvzhongmolvxing.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-    python+微博的新闻自动发布</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-7-6</div>
-    <p>
-    爬取热门新闻自动发布到新浪微博</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/06/10/Hexo搭建网站全过程/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/img/bz.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/06/10/Hexo搭建网站全过程/">
-    Hexo+Github+阿里云搭建网站全过程</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-6-10</div>
-    <p>
-    hexo-sakura初体验，本站搭建过程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/06/10/Hexo搭建网站全过程/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
 
- -->
+
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>

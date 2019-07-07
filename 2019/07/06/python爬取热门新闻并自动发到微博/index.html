@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Category: 技术 | xiuin</title>
+  <title itemprop="name">python+微博的新闻自动发布 | xiuin</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -241,171 +241,271 @@
   </div>
 </header>
 
-      
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img data-src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/banner/coding.jpg" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/shaonvzhongmolvxing.jpg);" src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/shaonvzhongmolvxing.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      python+微博的新闻自动发布</h1>
+      <p class="entry-census">
+        <span>
+          <a href="xiuin.net">
+            <img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/custom/avatar.jpg">
+          </a>
+        </span>
+        <span>
+          <a href="xiuin.net">xiuin</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2019-7-6<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
   </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">野生技术协会</h1>
-    <span class="cat-des">
-      <p>Geek – Only for Love</p>
-    </span>
-  </header>
-</div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
+<li>新闻源，澎湃新闻：<a href="https://www.thepaper.cn/" target="_blank" rel="noopener">https://www.thepaper.cn/</a></li>
+<li>每晚12点执行爬虫，获取到下一天要发布的内容</li>
+<li>按照评论数排序，取前12条<ul>
+<li>少于15字的剔除</li>
+<li>带有“|”符号的剔除</li>
+<li>视频新闻剔除</li>
+</ul>
+</li>
+<li>脚本一键生成发布格式</li>
+<li>如果新闻中有敏感词，需要转成图片发布</li>
+</ul>
+<hr>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><pre><code># 下载geckodriver：https://github.com/mozilla/geckodriver/releases
+
+sudo pip install requests
+sudo pip install beautifulsoup4
+sudo pip install -i https://pypi.douban.com/simple lxml
+sudo pip install -i https://pypi.douban.com/simple pandas
+sudo pip install selenium
+sudo pip install sinaweibopy
+</code></pre><hr>
+<h2 id="爬取热度最高的前20条新闻"><a href="#爬取热度最高的前20条新闻" class="headerlink" title="爬取热度最高的前20条新闻"></a>爬取热度最高的前20条新闻</h2><pre><code class="python"># coding:utf-8
+
+import requests
+import lxml
+from bs4 import BeautifulSoup
+import time
+
+# 为了解决翻页问题，我并没有直接用这个url
+url = &#39;http://www.thepaper.cn/&#39;
+parseRetList = []
+
+# 循环获取一天的的数据
+def getAllPage(pageNum):
+    for i in range(2, pageNum):
+        t = time.time()
+        # 精选新闻
+        url = &#39;https://www.thepaper.cn/load_chosen.jsp?nodeids=25949&amp;topCids=3453401,3451038,3451335,3451175,3453320,&amp;pageidx=%d&amp;lastTime=%d&#39; % (i, int(round(t * 1000)))
+        # 时事新闻
+        # url = &#39;https://www.thepaper.cn/load_index.jsp?nodeids=25462,25488,25489,25490,25423,25426,25424,25463,25491,25428,68750,27604,25464,25425,25429,25481,25430,25678,25427,25422,25487,25634,25635,25600,&amp;topCids=,3458196,3460097,3458214,3458151,3458216&amp;pageidx=%d&amp;lastTime=%d&#39; % (i, int(round(t * 1000)))
+        print(&#39;--------------- %d --------------- &#39; % i)
+        respons = requests.get(url)
+        respons.encoding = (&#39;utf8&#39;)
+        res = respons.text
+        soup = BeautifulSoup(res, &#39;lxml&#39;)
+        news = soup.find_all(attrs = {&#39;class&#39;: &#39;news_li&#39;})
+        if len(news) == 0:
+            return
+        parseOnePage(news)
+
+# 解析一页的数据
+def parseOnePage(news):
+    for i in range(len(news)):
+        title = &#39;&#39;
+        hot = 0
+        if news[i].find(attrs = {&#39;class&#39;: &#39;p_time&#39;}):
+            p_time = news[i].find(attrs = {&#39;class&#39;: &#39;p_time&#39;}).get_text()
+            if p_time != &#39;&#39;:
+                continue
+        if news[i].find(&#39;h2&#39;) and news[i].find(&#39;h2&#39;).find(&#39;a&#39;):
+            title = news[i].find(&#39;h2&#39;).find(&#39;a&#39;).get_text()
+            # 长度太短的不要
+            if len(title) &lt; 16:
+                continue
+            # 有这个符号的新闻标题一般无法直接看懂
+            if &quot;|&quot; in title:
+                continue
+            # 不要疑问句的新闻
+            if title[-1] == &#39;?&#39;:
+                continue
+        trbszan = news[i].find(attrs = {&#39;class&#39;: &#39;trbszan&#39;})
+        if trbszan:
+            hot = trbszan.get_text()
+            if &quot;k&quot; in hot:
+                hot = hot[:-1]
+                hot = float(hot)*1000
+            # 偏向于国家大事
+            # if &quot;外交部&quot; in title:
+            #     hot = int(hot) + 3000
+            # elif &quot;国&quot; in title:
+            #     hot = int(hot) + 2500
+        else:
+            continue
+        print(title)
+        print(hot)
+        parseRetList.append({&#39;title&#39;: title, &#39;hot&#39;: int(hot)})
+
+# 打印排名前20的新闻
+getAllPage(40)
+parseRetList.sort(key=lambda k: k[&#39;hot&#39;], reverse = True)
+parseRetList = parseRetList[0:20]
+for i in range(0, len(parseRetList)):
+  print(&quot;[%d] %s&quot; % (parseRetList[i][&#39;hot&#39;], parseRetList[i][&#39;title&#39;]))
+
+# 按发布格式打印排名前12的新闻
+timeNow = str(time.strftime(&quot;[%Y.%m.%d]&quot;))
+info = &#39;&#39;
+for i in range(1, 13):
+  info = info + (&quot;%d. %s\n&quot; % (i, parseRetList[i-1][&#39;title&#39;]))
+print(info)
+</code></pre>
+<hr>
+<h2 id="自动发布"><a href="#自动发布" class="headerlink" title="自动发布"></a>自动发布</h2><pre><code># coding:utf-8
+
+from selenium import webdriver
+
+driver = webdriver.Firefox(executable_path=&#39;/Users/xiu/work/workspace/test/geckodriver&#39;)
+url=&#39;http://weibo.com/login.php&#39;
+# get打开微博主页
+driver.get(url)
+
+# 页面加载完全
+time.sleep(10)
+
+# 找到用户名输入框
+input_account=driver.find_element_by_id(&#39;loginname&#39;)
+# 找到密码输入框
+input_psw=driver.find_element_by_css_selector(&#39;input[type=&quot;password&quot;]&#39;)
+
+# 输入用户名和密码
+input_account.send_keys(&#39;hdy404@163.com&#39;)
+input_psw.send_keys(&#39;30016401332&#39;)
+
+# 找到登录按钮
+bt_logoin=driver.find_element_by_xpath(&#39;//div[@node-type=&quot;normal_form&quot;]//div[@class=&quot;info_list login_btn&quot;]/a&#39;)
+# 点击登录
+bt_logoin.click()
+# 等待页面加载完毕
+time.sleep(10)
+
+weibo_content = driver.find_element_by_xpath(&#39;//div[@class=&quot;input&quot;]/textarea[@class=&quot;W_input&quot;]&#39;)
+weibo_content.send_keys(info)
+bt_push = driver.find_element_by_xpath(&#39;//div[@class=&quot;func&quot;]/a&#39;)
+# 点击发布
+bt_push.click()
+</code></pre><hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.jianshu.com/p/8d382cbb0bbe" target="_blank" rel="noopener">Python+Selenium自动发送新浪微博</a></li>
+<li><a href="https://www.jianshu.com/p/892a1e3e6c9c" target="_blank" rel="noopener">python3+selenium 自动发布微博</a></li>
+</ul>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏<div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.4null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.4null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2019/07/06/Xshell配色方案/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/huiye.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                Xshell配色方案</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2019/07/06/MMD入门教程/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/qianhuammd.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                MMD入门教程</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/shaonvzhongmolvxing.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-    python+微博的新闻自动发布</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-7-6</div>
-    <p>
-    爬取热门新闻自动发布到新浪微博</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/06/10/Hexo搭建网站全过程/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/img/bz.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/06/10/Hexo搭建网站全过程/">
-    Hexo+Github+阿里云搭建网站全过程</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-6-10</div>
-    <p>
-    hexo-sakura初体验，本站搭建过程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/06/10/Hexo搭建网站全过程/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "rR3ARyG2fkmkwim4dSLy3o0E-gzGzoHsz",
+        appKey: "WUTmCIh2fCMffyk9KeeW8e4H",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
 
-
-      <div class="clearer">
-      </div>
-    </main>
-    <!--  -->
-    
-  </div>
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <a href="xiuin.net" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/custom/avatar.jpg" itemprop="image" alt="xiuin" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="xiuin.net" itemprop="url" rel="author">xiuin</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
 
-<!-- 
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/shaonvzhongmolvxing.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-    python+微博的新闻自动发布</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-7-6</div>
-    <p>
-    爬取热门新闻自动发布到新浪微博</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/06/10/Hexo搭建网站全过程/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/img/bz.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/06/10/Hexo搭建网站全过程/">
-    Hexo+Github+阿里云搭建网站全过程</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-6-10</div>
-    <p>
-    hexo-sakura初体验，本站搭建过程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/06/10/Hexo搭建网站全过程/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
 
- -->
+
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>

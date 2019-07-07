@@ -6558,10 +6558,10 @@ progress {
     width:0
 }
 .skill-1::-webkit-progress-value {
-    background:#ff9e2c
+    background:#61BFAD
 }
 .skill-1::-moz-progress-bar {
-    background:#ff9e2c
+    background:#61BFAD
 }
 @-webkit-keyframes bar-fill {
     0% {

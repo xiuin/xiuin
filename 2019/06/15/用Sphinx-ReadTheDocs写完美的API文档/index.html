@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Category: 技术 | xiuin</title>
+  <title itemprop="name">用Sphinx+ReadTheDocs写完美的API文档 | xiuin</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -241,171 +241,197 @@
   </div>
 </header>
 
-      
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img data-src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/banner/coding.jpg" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/ailuomanga.png);" src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/ailuomanga.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      用Sphinx+ReadTheDocs写完美的API文档</h1>
+      <p class="entry-census">
+        <span>
+          <a href="xiuin.net">
+            <img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/custom/avatar.jpg">
+          </a>
+        </span>
+        <span>
+          <a href="xiuin.net">xiuin</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2019-6-15<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
   </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">野生技术协会</h1>
-    <span class="cat-des">
-      <p>Geek – Only for Love</p>
-    </span>
-  </header>
-</div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ul>
+<li><a href="http://docs.sphinxdocs.com/en/latest/start.html" target="_blank" rel="noopener">官方教程</a></li>
+<li>安装 Sphinx:</li>
+</ul>
+<pre><code>pip install sphinx sphinx-autobuild</code></pre><hr>
+<h2 id="工程"><a href="#工程" class="headerlink" title="工程"></a>工程</h2><h4 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h4><pre><code>mkdir testProject
+cd testProject
+sphinx-quickstart</code></pre><h4 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h4><p>sphinx-quickstart之后开始项目配置</p>
+<pre><code>一般来说只有三项是需要你手动输入的，其余的均可以直接敲Enter
+1. &gt; Project name: sphinxtestProject （项目名称）
+2. &gt; Author name(s): Tom （作者）
+3. &gt; Project version []: 1.0.1 （项目版本）</code></pre><h4 id="查看效果"><a href="#查看效果" class="headerlink" title="查看效果"></a>查看效果</h4><ul>
+<li>编译之后把<code>testProject/_build/html/index.html</code>拖到浏览器就可以查看效果</li>
+</ul>
+<pre><code>make html</code></pre><hr>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a>markdown</h3><p>支持markdown转html，安装<code>pip install recommonmark</code><br>在conf.py中增加：</p>
+<pre><code>source_parsers={
+  &#39;.md&#39;: &#39;recommonmark.parser.CommonMarkParser&#39;
+}
+source_suffix=[&#39;.rst&#39;,&#39;.md&#39;]</code></pre><h2 id="markdown的表格"><a href="#markdown的表格" class="headerlink" title="markdown的表格"></a>markdown的表格</h2><p>安装 <code>pip install sphinx-markdown-tables</code><br> 在conf.py中增加：</p>
+<pre><code>extensions = [
+    &#39;sphinx_markdown_tables&#39;,
+]</code></pre><hr>
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><h4 id="主题更换"><a href="#主题更换" class="headerlink" title="主题更换"></a>主题更换</h4><ul>
+<li>换成最常见的<a href="https://sphinx-rtd-theme.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">蓝灰带左边栏的主题</a></li>
+<li>安装 <code>pip install sphinx_rtd_theme</code></li>
+<li>打开<code>conf.py</code>，将原本的<code>html_theme = &#39;alabaster&#39;</code>换成<code>html_theme = &#39;sphinx_rtd_theme&#39;</code></li>
+</ul>
+<h4 id="在sphinx-rtd-theme的基础上修改样式"><a href="#在sphinx-rtd-theme的基础上修改样式" class="headerlink" title="在sphinx_rtd_theme的基础上修改样式"></a>在sphinx_rtd_theme的基础上修改样式</h4><p>可修改的项见<a href="http://www.sphinx-doc.org/en/master/usage/configuration.html" target="_blank" rel="noopener">官方文档</a></p>
+<p>在conf.py中增加：</p>
+<pre><code>// 增加logo图片，需在相应路径放图片
+html_logo = &#39;./_static/logo.png&#39;
+
+// 注意此配置。放在&#39;_static&#39;文件夹下的文件会覆盖build出来的对应的文件，所以需要修改的样式文件放在_static路径下即可
+html_static_path = [&#39;_static&#39;]
+
+// 不要在html页中显示rst源文件链接
+html_show_sourcelink = False
+
+// 网页标签的小标题
+html_title = &#39;xxx API&#39;
+
+// 网页标签的小图标
+html_favicon = &#39;./_static/favicon.ico&#39;</code></pre><h4 id="修改代码块配色方案"><a href="#修改代码块配色方案" class="headerlink" title="修改代码块配色方案"></a>修改代码块配色方案</h4><ul>
+<li><a href="https://jwarby.github.io/jekyll-pygments-themes/languages/javascript.html" target="_blank" rel="noopener">配色方案选择</a></li>
+<li>在_static下增加pygments.css文件，把css内容复制进去即可</li>
+</ul>
+<hr>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>在conf.py中的修改</p>
+<pre><code>project = &#39;xxx&#39;
+copyright = &#39;2019, xxx Inc&#39;
+author = &#39;xxxx&#39;</code></pre><hr>
+<h2 id="托管"><a href="#托管" class="headerlink" title="托管"></a>托管</h2><ul>
+<li>登录<a href="https://readthedocs.org/" target="_blank" rel="noopener">readthedocs官网</a></li>
+<li>import a Project</li>
+<li>手动导入</li>
+<li>填写git url</li>
+<li>管理 -&gt; 高级设置<ul>
+<li>上面用到sphinx_markdown_tables插件。在“需要pip要求文件来构建你的文档”栏填入一个文件名，此文件内容为<code>sphinx-markdown-tables==0.0.9</code></li>
+<li>不启用 PDF 构建</li>
+<li>不启用 EPUB 构建</li>
+</ul>
+</li>
+<li>点击构建</li>
+</ul>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>ESP写得非常优秀、精致，图片也非常专业，<a href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/get-started/index.html" target="_blank" rel="noopener">向ESP看齐！！</a></p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏<div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.4null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.4null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2019/07/06/MMD入门教程/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/qianhuammd.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                MMD入门教程</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2019/06/10/Hexo搭建网站全过程/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/img/bz.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                Hexo+Github+阿里云搭建网站全过程</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/shaonvzhongmolvxing.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-    python+微博的新闻自动发布</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-7-6</div>
-    <p>
-    爬取热门新闻自动发布到新浪微博</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/06/10/Hexo搭建网站全过程/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/img/bz.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/06/10/Hexo搭建网站全过程/">
-    Hexo+Github+阿里云搭建网站全过程</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-6-10</div>
-    <p>
-    hexo-sakura初体验，本站搭建过程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/06/10/Hexo搭建网站全过程/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "rR3ARyG2fkmkwim4dSLy3o0E-gzGzoHsz",
+        appKey: "WUTmCIh2fCMffyk9KeeW8e4H",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
 
-
-      <div class="clearer">
-      </div>
-    </main>
-    <!--  -->
-    
-  </div>
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <a href="xiuin.net" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/xiuin/cdn@v0.0.2/img/custom/avatar.jpg" itemprop="image" alt="xiuin" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="xiuin.net" itemprop="url" rel="author">xiuin</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
 
-<!-- 
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/blogSrc/shaonvzhongmolvxing.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-    python+微博的新闻自动发布</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-7-6</div>
-    <p>
-    爬取热门新闻自动发布到新浪微博</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/07/06/python爬取热门新闻并自动发到微博/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/06/10/Hexo搭建网站全过程/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xiuinit.oss-cn-shenzhen.aliyuncs.com/img/bz.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt>
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/06/10/Hexo搭建网站全过程/">
-    Hexo+Github+阿里云搭建网站全过程</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-6-10</div>
-    <p>
-    hexo-sakura初体验，本站搭建过程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/06/10/Hexo搭建网站全过程/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
 
- -->
+
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>
